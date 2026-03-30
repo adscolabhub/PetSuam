@@ -5,6 +5,7 @@ import Input from './components/Input';
 export default function App() {
   return (
     <View style={styles.container}>
+
       <Text>Open up App.js to stdsfsdfsdfsdap!</Text>
       <Input placeholder="Email" keyboardType="email-address"/>
       <Input 
