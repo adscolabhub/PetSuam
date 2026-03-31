@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   formContainer: {
+    flex: 1,
+    alignItems: "center"
   }
 
 
