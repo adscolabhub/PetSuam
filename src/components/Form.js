@@ -12,7 +12,7 @@ export default function Form({h1, h2, h3, children, btnPlaceholder}) {
               {children}
 
               <View style={styles.buttonContainer}>
-                <Button  title={btnPlaceholder}/>
+                <Button  title={btnPlaceholder} onPress={() => {}} />
               </View>
             </View>
         </View>
@@ -22,18 +22,18 @@ export default function Form({h1, h2, h3, children, btnPlaceholder}) {
 
 const styles = StyleSheet.create({
   h1: {
-    fontSize: 24,
+    fontSize: 34,
     fontWeight: 'bold',
     marginBottom: 10,
     color: "#083068"
   },
   h2: {
-    fontSize: 20,
+    fontSize: 24,
     marginBottom: 5,
     color: "black"
   },
   h3: {
-    fontSize: 18,
+    fontSize: 20,
     color: "black",
     marginBottom: 20,
   },

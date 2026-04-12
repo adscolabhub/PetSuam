@@ -1,16 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground,TextInput } from 'react-native';
 import Form from "../components/Form.js";
 import Input from "../components/Input.js";
 
 export default function Login() {
   return (
     <View style={styles.container}>
-      <ImageBackground
-                  source={require('../assets/background4.png')} // Local image
-                  resizeMode="cover" // Options: cover, contain, stretch, repeat, center
-                  style={styles.image}
-                >
+      
       <Form
         h1="PetSuam"
         h2="Login"
@@ -32,7 +28,7 @@ export default function Login() {
         />
 
       </Form>
-      </ImageBackground>
+      
       <StatusBar style="auto" />
     </View>
   );

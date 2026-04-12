@@ -15,11 +15,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputBox: {
-    borderBlockColor: "black",
+    borderColor: "black",
     borderWidth: 2,
     padding: 8,
     borderRadius: 10,
-    width: 300
+    width: 300,
+    color: 'black'
   }
   
 });
