@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import React from "react";
 import { 
   ScrollView, 
   KeyboardAvoidingView, 
@@ -9,11 +10,15 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
+import { RadioButton } from 'react-native-paper';
 import Form from "../components/Form.js";
 import Input from "../components/Input.js";
 
 
 export default function Cadastro() {
+  const [value, setValue] = React.useState('macho');
+  const [especie, setEspecie] = React.useState('cachorro');
+
   return (
 
     <KeyboardAvoidingView 
@@ -48,9 +53,55 @@ export default function Cadastro() {
 
         
             <Input placeholder="Nome do Pet" autoCapitalize="words" />
-            <Input placeholder="Espécie" />
+            <RadioButton.Group
+                onValueChange={setEspecie}
+                value={especie}
+              >
+                <View style={styles.radioContainer}>
+                <Text>Espécie:</Text>
+                <TouchableOpacity
+                  style={styles.radioAlign}
+                  onPress={() => setEspecie('Cachorro')}
+                >
+                  <RadioButton value="Cachorro" />
+                  <Text>Cachorro</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.radioAlign}
+                  onPress={() => setEspecie('Gato')}
+                >
+                  <RadioButton value="Gato" />
+                  <Text>Gato</Text>
+                </TouchableOpacity>
+                </View>
+              </RadioButton.Group>
             <Input placeholder="Raça" />
-            <Input placeholder="Sexo" />
+
+            
+             <RadioButton.Group
+                onValueChange={setValue}
+                value={value}
+              >
+                <View style={styles.radioContainer}>
+                <Text>Sexo:</Text>
+                <TouchableOpacity
+                  style={styles.radioAlign}
+                  onPress={() => setValue('macho')}
+                >
+                  <RadioButton value="macho" />
+                  <Text>Macho</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.radioAlign}
+                  onPress={() => setValue('femea')}
+                >
+                  <RadioButton value="femea" />
+                  <Text>Fêmea</Text>
+                </TouchableOpacity>
+                </View>
+              </RadioButton.Group>
             
           </Form>
         </ScrollView>
@@ -83,5 +134,15 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 5,
     textAlign: 'center',
+  },
+  radioAlign: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  radioContainer : {
+    flexDirection: "row",
+    justifyContent: "flexStart",
+    alignItems: "center",
+    marginTop: 6,
   },
 });
