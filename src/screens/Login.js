@@ -6,12 +6,22 @@ import Input from "../components/Input.js";
 export default function Login() {
   return (
     <View style={styles.container}>
+
+      <ImageBackground
+              source={require('../assets/background4.png')}
+              resizeMode="cover"
+              style={styles.image}
+            >
       
       <Form
         h1="PetSuam"
         h2="Login"
         h3="Bem-vindos ao PetSuam"
         btnPlaceholder="Enviar"
+        screen1= "Cadastro"
+        screen1Text="Criar conta"
+        screen2= "Cadastro"
+        screen2Text="Esqueci minha senha"
       >
         <Input
           placeholder="Email"
@@ -30,6 +40,7 @@ export default function Login() {
       </Form>
       
       <StatusBar style="auto" />
+      </ImageBackground>
     </View>
   );
 }
