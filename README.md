@@ -1,11 +1,32 @@
 # PetSuam App
 
 ## Setup
+
 Clone o repositório:
-git clone https://github.com/UnisuamWorkSpace/PetSuam.git
+git clone [https://github.com/adscolabhub/petsuam-app.git](https://github.com/adscolabhub/petsuam-app.git)
 
 ## Instale as dependências
-npm install ou npm i
+
+```bash
+npm install
+```
+
+ou
+
+```bash
+npm i
+```
 
 ## Inicie o projeto
-npx expo start --tunnel (para rodar na web) e npx expo start (para rodar no celular)
+
+- Para rodar remotamente via tunelamento:
+
+```bash
+    npx expo start --tunnel
+```
+
+- Para rodar Localmente:
+
+```bash
+    npx expo start
+```
