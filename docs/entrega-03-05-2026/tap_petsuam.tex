@@ -1,0 +1,153 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+\geometry{margin=2.5cm}
+\onehalfspacing
+
+\titleformat{\section}{\bfseries\large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
+
+\title{\textbf{TERMO DE ABERTURA DO PROJETO (TAP)} \\ \vspace{0.5cm} \large Projeto PetSuam}
+\author{Gabriel Ferreira Dantas \\ Igor da Silva Sant\textquotesingle anna \\ Ronivaldo Domingues de Andrade}
+\date{Março de 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Identificação do Projeto}
+\textbf{Nome do Projeto:} PetSuam \\
+
+\textbf{Curso:} Superior em Análise e Desenvolvimento de Sistemas \\
+
+\textbf{Instituição:} Centro Universitário Augusto Motta -- UNISUAM \\
+
+\textbf{Disciplina:} Projeto em Aplicativos Mobile \\
+
+\textbf{Professor:} Bruno Santos Cezario \\
+
+\textbf{Data de Início:} 19/03/2026 \\
+
+\textbf{Previsão de Término:} 14/06/2026 \\
+
+\section{Descrição do Projeto}
+O projeto PetSuam consiste no desenvolvimento de um aplicativo mobile com o objetivo principal de funcionar como uma carteira de vacinação digital para animais de estimação.
+
+A proposta visa centralizar informações importantes sobre a saúde dos pets, permitindo ao tutor acessar dados como histórico de vacinas, informações básicas do animal e facilitar o acompanhamento da saúde de forma prática e digital.
+
+Inicialmente, o projeto contemplará as espécies caninas e felinas, com possibilidade de expansão futura para outras espécies em uma versão comercial.
+
+\section{Objetivo do Projeto}
+Desenvolver um aplicativo mobile funcional que permita:
+\begin{itemize}
+    \item Cadastro de tutores e seus pets;
+    \item Armazenamento de informações básicas dos animais;
+    \item Registro e acompanhamento de vacinas;
+    \item Localização de pet shops próximos via integração com API de mapas;
+\end{itemize}
+
+\section{Justificativa}
+Atualmente, muitos tutores não possuem controle organizado das vacinas de seus pets, utilizando métodos físicos ou desorganizados. O aplicativo busca resolver esse problema oferecendo uma solução digital acessível, prática e segura.
+
+Além disso, o projeto apresenta potencial de expansão comercial, agregando funcionalidades que aumentam a segurança dos animais e facilitam a interação com clínicas veterinárias.
+
+\section{Escopo do Projeto}
+
+\subsection{Escopo do MVP}
+\begin{itemize}
+    \item Tela de login;
+    \item Tela de cadastro do tutor;
+    \item Cadastro de pets (cães e gatos);
+    \item Listagem dos pets cadastrados;
+    \item Tela de perfil do pet com:
+    \begin{itemize}
+        \item Dados básicos;
+        \item Listagem de vacinas;
+        \item Opção de adicionar novas vacinas;
+    \end{itemize}
+    \item Integração com API do Google Maps para localização de pet shops;
+\end{itemize}
+
+\subsection{Fora do Escopo (MVP)}
+\begin{itemize}
+    \item Cadastro de outras espécies;
+    \item Sistema administrativo completo para clínicas;
+    \item Funcionalidades avançadas de análise de dados;
+\end{itemize}
+
+\section{Funcionalidades Futuras (Versão Comercial)}
+\begin{itemize}
+    \item Geração de QR Code para cada pet;
+    \item Página web pública acessível via QR Code com:
+    \begin{itemize}
+        \item Dados do tutor;
+        \item Informações de segurança do animal;
+    \end{itemize}
+    \item Aplicativo administrativo para clínicas veterinárias;
+    \item Registro automatizado de procedimentos e vacinas;
+    \item Geração de dados estatísticos para estudos futuros;
+\end{itemize}
+
+\section{Público-Alvo}
+O público-alvo do aplicativo são pessoas que possuem ao menos um animal de estimação, inicialmente focado em donos de cães e gatos.
+
+\section{Tecnologias Utilizadas}
+\begin{itemize}
+    \item React Native (desenvolvimento mobile);
+    \item API Google Maps;
+    \item Integração futura com banco de dados remoto;
+\end{itemize}
+
+\section{Stakeholders}
+\begin{itemize}
+    \item Desenvolvedores: Gabriel Ferreira Dantas, Igor da Silva Sant\textquotesingle anna, Ronivaldo Domingues de Andrade;
+    \item Instituição: UNISUAM;
+    \item Professores da disciplina;
+    \item Usuários finais (tutores de pets);
+    \item Clínicas veterinárias (futuro);
+\end{itemize}
+
+\section{Cronograma Resumido}
+\begin{itemize}
+    \item Planejamento: Março de 2026;
+    \item Desenvolvimento do MVP: Março a Maio de 2026;
+    \item Testes: Maio de 2026;
+    \item Entrega Final: Junho de 2026;
+\end{itemize}
+
+\section{Riscos do Projeto}
+\begin{itemize}
+    \item Dificuldade de aprendizado do React Native;
+    \item Problemas na integração com APIs externas;
+    \item Limitação de tempo para desenvolvimento completo;
+\end{itemize}
+
+\section{Links do Projeto}
+\textbf{Protótipo (Figma):} \\
+\url{https://www.figma.com/design/Y94pudhuCsMPn7SRlNW4ur/App-PetSuam?node-id=0-1&t=IjEc5wA5R9lsQVaO-1}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Repositório (GitHub):} \\
+\url{https://github.com/adscolabhub/petsuam-app}
+
+\section{Aprovação do Projeto}
+Este documento formaliza a abertura do projeto PetSuam, autorizando o início de seu desenvolvimento conforme os termos aqui descritos.
+
+\vspace{2cm}
+
+\noindent
+\begin{tabular}{ccc}
+\rule{5cm}{0.4pt} & \rule{5cm}{0.4pt} & \rule{5cm}{0.4pt} \\
+Gabriel Ferreira Dantas & Igor da Silva Sant\textquotesingle anna & Ronivaldo D. Andrade \\
+\end{tabular}
+
+\end{document}

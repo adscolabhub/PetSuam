@@ -8,13 +8,16 @@ import {
   View, 
   ImageBackground, 
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import Form from "../components/Form.js";
 import Input from "../components/Input.js";
 import { db } from "../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
+import { TextInputMask } from 'react-native-masked-text';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 export default function Cadastro() {
@@ -27,8 +30,25 @@ export default function Cadastro() {
   const [confirmarSenha, setConfirmarSenha] = React.useState("");
   const [nomePet, setNomePet] = React.useState("");
   const [raca, setRaca] = React.useState("");
+  const [castrado, setCastrado] = React.useState('nao');
+
+  const [nomeError, setNomeError] = React.useState('');
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmationPassword, setShowConfirmationPassword] = React.useState(false);
+
+  const validar = () => {
+  if (nome.length < 5) {
+    setNomeError("Nome precisa ter pelo menos 5 caracteres");
+    return false;
+  }
+
+  setNomeError("");
+  return true;
+};
+ 
 
   const cadastrar = async () => {
+    if(validar()) {
   try {
     await addDoc(collection(db, "usuarios"), {
       nome,
@@ -39,14 +59,25 @@ export default function Cadastro() {
         nome: nomePet,
         especie,
         raca,
-        sexo: value
+        sexo: value,
+        castrado: castrado
       },
       criadoEm: new Date()
     });
 
-    console.log("Cadastro realizado!");
+    setValue("");
+    setEspecie("");
+    setNome("");
+    setTelefone("");
+    setEmail("");
+    setSenha("");
+    setConfirmarSenha("");
+    setNomePet("");
+    setRaca("");
+    Alert.alert('Status do Cadastro:', 'Cadastro realizado!');
   } catch (error) {
-    console.log("Erro:", error);
+    Alert.alert('Status do Cadastro:', 'Cadastro não realizado. Erro: ', error.message);
+  }
   }
 };
 
@@ -75,16 +106,46 @@ export default function Cadastro() {
             onPress={cadastrar}
           >
      
-            <Input placeholder="Nome Completo" autoCapitalize="words" onChangeText={setNome} />
-            <Input placeholder="Número de Telefone" keyboardType="phone-pad" onChangeText={setTelefone} />
-            <Input placeholder="Email" keyboardType="email-address" autoCapitalize="none" onChangeText={setEmail} />
-            <Input placeholder="Senha" secureTextEntry={true} onChangeText={setSenha}/>
-            <Input placeholder="Confirmar Senha" secureTextEntry={true} onChangeText={setConfirmarSenha}/>
+            <Input placeholder="Nome Completo" maxLength={50} autoCapitalize="words" value={nome} onChangeText={setNome} />
+            <Text>{nomeError}</Text>
+            <TextInputMask
+              placeholder='Telefone'
+              type={'cel-phone'}
+              options={{
+                maskType: 'BRL',
+                withDDD: true,
+                dddMask: '(99) '
+              }}
+              value={telefone}
+              onChangeText={setTelefone}
+              style={styles.inputBox}
+            />
+            <Input placeholder="Email" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
+            <View style={styles.passwordContainer}>
+              <Input placeholder="Senha" maxLength={10} secureTextEntry={!showPassword} value={senha} onChangeText={setSenha} />   
+              <TouchableOpacity style={styles.seePassword} onPress={() => setShowPassword(!showPassword)}>
+                <FontAwesome 
+                  name = {!showPassword ? "eye" : "eye-slash"}
+                  size={30} 
+                  color="black" 
+                />
+              </TouchableOpacity>
+            </View>
 
+            <View style={styles.passwordContainer}>
+              <Input placeholder="Confirmar Senha" maxLength={10} secureTextEntry={!showConfirmationPassword} value={confirmarSenha} onChangeText={setConfirmarSenha} />   
+              <TouchableOpacity style={styles.seePassword} onPress={() => setShowConfirmationPassword(!showConfirmationPassword)}>
+                <FontAwesome 
+                  name = {!showConfirmationPassword ? "eye" : "eye-slash"}
+                  size={30} 
+                  color="black" 
+                />
+              </TouchableOpacity>            
+            </View>
             <Text style={styles.h2}>Cadastro Pet</Text>
 
         
-            <Input placeholder="Nome do Pet" autoCapitalize="words" onChangeText={setNomePet}/>
+            <Input placeholder="Nome do Pet" maxLength={30} autoCapitalize="words" value={nomePet} onChangeText={setNomePet}/>
             <RadioButton.Group
                 onValueChange={setEspecie}
                 value={especie}
@@ -109,7 +170,7 @@ export default function Cadastro() {
                 </View>
               </RadioButton.Group>
 
-            <Input placeholder="Raça" onChangeText={setRaca} />
+            <Input placeholder="Raça" maxLength={30}  value={raca} onChangeText={setRaca} />
 
             
              <RadioButton.Group
@@ -132,6 +193,30 @@ export default function Cadastro() {
                 >
                   <RadioButton value="femea" />
                   <Text>Fêmea</Text>
+                </TouchableOpacity>
+                </View>
+              </RadioButton.Group>
+
+              <RadioButton.Group
+                onValueChange={setCastrado}
+                value={castrado}
+              >
+                <View style={styles.radioContainer}>
+                <Text>Castrado:</Text>
+                <TouchableOpacity
+                  style={styles.radioAlign}
+                  onPress={() => setCastrado('sim')}
+                >
+                  <RadioButton value="sim" />
+                  <Text>Sim</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.radioAlign}
+                  onPress={() => setCastrado('nao')}
+                >
+                  <RadioButton value="nao" />
+                  <Text>Não</Text>
                 </TouchableOpacity>
                 </View>
               </RadioButton.Group>
@@ -178,4 +263,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 6,
   },
+  inputBox: {
+    borderColor: "black",
+    borderWidth: 2,
+    padding: 8,
+    borderRadius: 10,
+    width: 300,
+    color: 'black',
+    marginTop: 20,
+  },
+  passwordContainer: {
+    position: 'relative',
+    width: 300
+  },
+  seePassword: {
+    position: "absolute",
+    top: '50%',
+    transform: [{translateY: -5}],
+    right: 15,
+  }
 });
