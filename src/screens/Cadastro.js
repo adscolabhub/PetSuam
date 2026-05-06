@@ -37,46 +37,54 @@ export default function Cadastro() {
   const [raca, setRaca] = React.useState("");
   const [castrado, setCastrado] = React.useState('nao');
 
-  const [nomeError, setNomeError] = React.useState('');
+  const [errors, setErrors] = React.useState({});
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmationPassword, setShowConfirmationPassword] = React.useState(false);
 
   const validar = () => {
   let valido = true;
 
-  setNomeError("");
+   const newErrors = {
+    nome: "",
+    telefone: "",
+    email: "",
+    senha: "",
+    confirmarSenha: "",
+    nomePet: "",
+  };
 
   if (!nome.trim()) {
-    setNomeError("Nome é obrigatório");
+    newErrors.nome = "Nome é obrigatório";
     valido = false;
   }
 
   if (!telefone || telefone.length < 14) {
-    Alert.alert("Erro", "Telefone inválido");
+    newErrors.telefone = "Telefone inválido";
     valido = false;
   }
 
   const emailRegex = /\S+@\S+\.\S+/;
   if (!emailRegex.test(email)) {
-    Alert.alert("Erro", "Email inválido");
+    newErrors.email = "Email inválido";
     valido = false;
   }
 
   if (senha.length < 6) {
-    Alert.alert("Erro", "A senha deve ter pelo menos 6 caracteres");
+    newErrors.senha = "A senha deve ter pelo menos 6 caracteres";
     valido = false;
   }
 
   if (senha !== confirmarSenha) {
-    Alert.alert("Erro", "As senhas não coincidem");
+    newErrors.confirmarSenha = "As senhas não coincidem";
     valido = false;
   }
 
   if (!nomePet.trim()) {
-    Alert.alert("Erro", "Nome do pet é obrigatório");
+    newErrors.nomePet = "Nome do pet é obrigatório";
     valido = false;
   }
 
+  setErrors(newErrors);
   return valido;
 };
  
@@ -170,7 +178,7 @@ export default function Cadastro() {
           >
      
             <Input placeholder="Nome Completo" maxLength={50} autoCapitalize="words" value={nome} onChangeText={setNome} />
-            <Text>{nomeError}</Text>
+            {errors.nome && <Text style={styles.errorStyle}>{errors.nome}</Text>}
             <TextInputMask
               placeholder='Telefone'
               type={'cel-phone'}
@@ -184,8 +192,11 @@ export default function Cadastro() {
               style={styles.inputBox}
             />
             <Input placeholder="Email" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
+            {errors.email && <Text style={styles.errorStyle}>{errors.email}</Text>}
+
             <View style={styles.passwordContainer}>
-              <Input placeholder="Senha" maxLength={10} secureTextEntry={!showPassword} value={senha} onChangeText={setSenha} />   
+              <Input placeholder="Senha" maxLength={10} secureTextEntry={!showPassword} value={senha} onChangeText={setSenha} /> 
+              
               <TouchableOpacity style={styles.seePassword} onPress={() => setShowPassword(!showPassword)}>
                 <FontAwesome 
                   name = {showPassword ? "eye-slash" : "eye"}
@@ -194,9 +205,13 @@ export default function Cadastro() {
                 />
               </TouchableOpacity>
             </View>
+            {errors.senha && <Text style={styles.errorStyle}>{errors.senha}</Text>}
+
 
             <View style={styles.passwordContainer}>
               <Input placeholder="Confirmar Senha" maxLength={10} secureTextEntry={!showConfirmationPassword} value={confirmarSenha} onChangeText={setConfirmarSenha} />   
+              
+              
               <TouchableOpacity style={styles.seePassword} onPress={() => setShowConfirmationPassword(!showConfirmationPassword)}>
                 <FontAwesome 
                   name = {showConfirmationPassword ? "eye-slash" : "eye"}
@@ -205,10 +220,12 @@ export default function Cadastro() {
                 />
               </TouchableOpacity>            
             </View>
+            {errors.confirmarSenha && <Text style={styles.errorStyle}>{errors.confirmarSenha}</Text>}
             <Text style={styles.h2}>Cadastro Pet</Text>
 
         
             <Input placeholder="Nome do Pet" maxLength={30} autoCapitalize="words" value={nomePet} onChangeText={setNomePet}/>
+            {errors.nomePet && <Text style={styles.errorStyle}>{errors.nomePet}</Text>}
             <RadioButton.Group
                 onValueChange={setEspecie}
                 value={especie}
@@ -344,5 +361,8 @@ const styles = StyleSheet.create({
     top: '50%',
     transform: [{translateY: -5}],
     right: 15,
+  },
+  errorStyle: {
+    color: "red"
   }
 });
