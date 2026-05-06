@@ -98,8 +98,9 @@ export default function Cadastro() {
       );
 
       //previne de enviar um usuario "vazio"
+      
       try {
-        //cria um usuario por documento pra facilitar as consultas
+      //cria um usuario por documento pra facilitar as consultas
       await setDoc(doc(db, "usuarios", userCredential.user.uid), {
         uid: userCredential.user.uid,
         nome: nomeNormalizado,
@@ -187,7 +188,7 @@ export default function Cadastro() {
               <Input placeholder="Senha" maxLength={10} secureTextEntry={!showPassword} value={senha} onChangeText={setSenha} />   
               <TouchableOpacity style={styles.seePassword} onPress={() => setShowPassword(!showPassword)}>
                 <FontAwesome 
-                  name = {!showPassword ? "eye" : "eye-slash"}
+                  name = {showPassword ? "eye-slash" : "eye"}
                   size={30} 
                   color="black" 
                 />
@@ -198,7 +199,7 @@ export default function Cadastro() {
               <Input placeholder="Confirmar Senha" maxLength={10} secureTextEntry={!showConfirmationPassword} value={confirmarSenha} onChangeText={setConfirmarSenha} />   
               <TouchableOpacity style={styles.seePassword} onPress={() => setShowConfirmationPassword(!showConfirmationPassword)}>
                 <FontAwesome 
-                  name = {!showConfirmationPassword ? "eye" : "eye-slash"}
+                  name = {showConfirmationPassword ? "eye-slash" : "eye"}
                   size={30} 
                   color="black" 
                 />
@@ -216,17 +217,17 @@ export default function Cadastro() {
                 <Text>Espécie:</Text>
                 <TouchableOpacity
                   style={styles.radioAlign}
-                  onPress={() => setEspecie('Cachorro')}
+                  onPress={() => setEspecie('cachorro')}
                 >
-                  <RadioButton value="Cachorro" />
+                  <RadioButton value="cachorro" />
                   <Text>Cachorro</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   style={styles.radioAlign}
-                  onPress={() => setEspecie('Gato')}
+                  onPress={() => setEspecie('gato')}
                 >
-                  <RadioButton value="Gato" />
+                  <RadioButton value="gato" />
                   <Text>Gato</Text>
                 </TouchableOpacity>
                 </View>
@@ -321,7 +322,7 @@ const styles = StyleSheet.create({
   },
   radioContainer : {
     flexDirection: "row",
-    justifyContent: "flexStart",
+    justifyContent: "flex-Start",
     alignItems: "center",
     marginTop: 6,
   },
