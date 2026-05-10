@@ -51,6 +51,7 @@ export default function Cadastro() {
     senha: "",
     confirmarSenha: "",
     nomePet: "",
+    raca: "",
   };
 
   if (!nome.trim()) {
@@ -81,6 +82,11 @@ export default function Cadastro() {
 
   if (!nomePet.trim()) {
     newErrors.nomePet = "Nome do pet é obrigatório";
+    valido = false;
+  }
+
+  if (!raca.trim()) {
+    newErrors.raca = "A raça do pet é obrigatório";
     valido = false;
   }
 
@@ -191,6 +197,7 @@ export default function Cadastro() {
               onChangeText={setTelefone}
               style={styles.inputBox}
             />
+            {errors.telefone && <Text style={styles.errorStyle}>{errors.telefone}</Text>}
             <Input placeholder="Email" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
             {errors.email && <Text style={styles.errorStyle}>{errors.email}</Text>}
 
@@ -251,6 +258,7 @@ export default function Cadastro() {
               </RadioButton.Group>
 
             <Input placeholder="Raça" maxLength={30}  value={raca} onChangeText={setRaca} />
+            {errors.raca && <Text style={styles.errorStyle}>{errors.raca}</Text>}
 
             
              <RadioButton.Group
