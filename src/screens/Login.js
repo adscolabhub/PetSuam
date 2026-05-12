@@ -106,7 +106,7 @@ export default function Login() {
           autoCorrect={false}
           value={senha} 
           onChangeText={setSenha}
-          maxLength={6}
+          maxLength={10}
         />
         {error && <Text style={styles.errorStyle}>{error.senha}</Text>}
 
