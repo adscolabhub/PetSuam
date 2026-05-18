@@ -6,16 +6,19 @@ import { StyleSheet, Text, View, ImageBackground,TextInput } from 'react-native'
 import Login from "./src/screens/Login.js";
 import Cadastro from "./src/screens/Cadastro.js";
 import Home from "./src/screens/Home.js";
+import CadastroPet from './src/screens/CadastroPet.js';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cadastro" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="CadastroPet" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="CadastroPet" component={CadastroPet} />
+
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

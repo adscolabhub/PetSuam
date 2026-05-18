@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
 
+
 export default function Home({ navigation }) {
   
   // Dummy data mirroring your design structure
@@ -67,7 +68,7 @@ export default function Home({ navigation }) {
           <TouchableOpacity 
             style={styles.addPetButton}
             activeOpacity={0.7}
-            onPress={() => console.log("Navigate to Add Pet screen")}
+            onPress={() => navigation.navigate('CadastroPet') }
           >
             <MaterialCommunityIcons name="plus-circle-outline" size={36} color="#083068" />
             <Text style={styles.addPetText}>ADICIONAR NOVO PET</Text>
